@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int parse_line(string line) {
+int part_one(string line) {
   int first, last;
 
   for (int i = 0; i < line.length(); i++) {
@@ -34,14 +34,15 @@ int main(int argc, char *argv[]) {
 
   if(file.is_open()) {
     string line;
-    int sum = 0;
+    int p_one_sum = 0;
 
     while(file){
       getline(file, line);
-      sum += parse_line(line);
+      p_one_sum += part_one(line);
     }
     file.close();
-    cout << sum;
+    cout << "Part one's answer is: " << p_one_sum << endl;
   }
+
   return 0;
 }
