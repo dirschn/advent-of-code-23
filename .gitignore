@@ -1,3 +1,4 @@
 *.o
+.vscode/
 one/one
 two/two
