@@ -5,18 +5,15 @@ using namespace std;
 
 void split(const string& str, const string& delim, vector<string>& parts)
 {
-  size_t start, end = 0;
-  while (end < str.size()) {
-    start = end;
-    while (start < str.size() && (delim.find(str[start]) != string::npos)) {
-      start++;
-    }
-    end = start;
-    while (end < str.size() && (delim.find(str[end]) == string::npos)) {
-      end++;
-    }
-    if (end-start != 0) {
-      parts.push_back(string(str, start, end-start));
-    }
+  size_t start = 0;
+  size_t end = str.find(delim);
+
+  while (end != string::npos) {
+    parts.push_back(str.substr(start, end - start));
+    start = end + delim.length();
+    end = str.find(delim, start);
   }
+
+  // Add the last part (or the whole string if no delimiter was found)
+  parts.push_back(str.substr(start));
 }
