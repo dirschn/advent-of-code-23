@@ -63,6 +63,12 @@ int part_one(vector<string> &lines) {
   return sum;
 }
 
+int part_two(vector<string> &lines) {
+  int result = 0;
+
+  return result;
+}
+
 int main(int argc, char *argv[]) {
   string filename;
   if (argc == 1){
@@ -82,11 +88,14 @@ int main(int argc, char *argv[]) {
       lines.push_back(line);
     }
 
+    file.close();
+
     int p_one_sum = part_one(lines);
+    int p_two_sum = part_two(lines);
 
     cout << "Part 1 sum: " << p_one_sum << endl;
+    cout << "Part 2 sum: " << p_two_sum << endl;
 
-    file.close();
   } else {
     cerr << "Failed to open file: " << filename << endl;
     return 1;
