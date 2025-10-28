@@ -64,9 +64,57 @@ int part_one(vector<string> &lines) {
 }
 
 int part_two(vector<string> &lines) {
-  int result = 0;
+  unsigned int power = 0;
+  unsigned int sum = 0;
+  string id_delim = ": ";
+  string set_delim = "; ";
+  string color_delim = ", ";
 
-  return result;
+
+  for (const string &line : lines) {
+    int max_red = 0;
+    int max_green = 0;
+    int max_blue = 0;
+    // Split the game line
+    vector<string> split_line;
+    split(line, id_delim, split_line);
+
+    // grab the sets from the split line
+    string sets = split_line[1];
+
+    // split the sets into pulls
+    vector<string> split_sets;
+    split(sets, set_delim, split_sets);
+
+    for (const string &set : split_sets) {
+      // split the pulls into color/count
+      vector<string> pulls;
+      split(set, color_delim, pulls);
+      for (const string &pull : pulls) {
+        vector<string> pull_parts;
+        split(pull, " ", pull_parts);
+        int count = stoi(pull_parts[0]);
+        string color = pull_parts[1];
+
+        if ((color == "red") && (count > max_red))
+        {
+          max_red = count;
+        }
+        else if ((color == "green") && (count > max_green))
+        {
+          max_green = count;
+        }
+        else if ((color == "blue") && (count > max_blue))
+        {
+          max_blue = count;
+        }
+      }
+    }
+    power = max_red * max_green * max_blue;
+    sum += power;
+  }
+
+  return sum;
 }
 
 int main(int argc, char *argv[]) {
